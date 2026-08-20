@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="manipulator">
+  <link name="world"/>
+
+  <joint name="world_to_base" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="-1.5707963267949 0 0"/>
+  </joint>
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.05289643 0.00003915 0.00267455"
+        rpy="0 0 0" />
+      <mass
+        value="0.085632" />
+      <inertia
+        ixx="4.089960E-05"
+        ixy="2.990636E-07"
+        ixz="2.277747E-05"
+        iyy="4.863296E-04"
+        iyz="-1.685997E-08"
+        izz="5.099615E-04" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.898039215686275 0.898039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  
+  
+  <link
+    name="link_1">
+    <inertial>
+      <origin
+        xyz="-0.00000000259 -0.00000556 0.00045458"
+        rpy="0 0 0" />
+      <mass
+        value="0.064401" />
+      <inertia
+        ixx="2.025756E-05"
+        ixy="-2.285855E-15"
+        ixz="4.998447E-13"
+        iyy="1.322124E-05"
+        iyz="1.069867E-09"
+        izz="1.835549E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator_description/meshes/1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.898039215686275 0.898039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator_description/meshes/1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  
+  <joint
+    name="joint_1"
+    type="revolute">
+    <origin
+      xyz="-0.180075738834269 -0.0399304 7.57388346011159E-05"
+      rpy="1.5707963267949 -0.0157623178412577 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link_1" />
+    <axis
+      xyz="0 0 1" />
+  
+    <limit
+      lower="-2.617994"
+      upper="2.617994"
+      effort="1.8"
+      velocity="10.16" />
+  </joint>
+  
+  
+ 
+  <link
+    name="link_2">
+    <inertial>
+      <origin
+        xyz="-0.0000000164 0.00000131 -0.00423158"
+        rpy="0 0 0" />
+      <mass
+        value="0.063354" />
+      <inertia
+        ixx="3.226839E-05"
+        ixy="3.865659E-15"
+        ixz="1.633256E-11"
+        iyy="2.330853E-05"
+        iyz="2.639431E-09"
+        izz="1.932872E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator_description/meshes/2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator_description/meshes/2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  
+  <joint
+    name="joint_2"
+    type="revolute">
+    <origin
+      xyz="0 0 0.0465"
+      rpy="3.14159265358979 0.0105410811316586 3.14159265358979" />
+    <parent
+      link="link_1" />
+    <child
+      link="link_2" />
+    <axis
+      xyz="0 1 0" />
+  
+    <limit
+      lower="-2.617994"
+      upper="2.617994"
+      effort="1.8"
+      velocity="10.16" />
+  </joint>
+  
+  
+  
+  
+  <link
+    name="link_3">
+    <inertial>
+      <origin
+        xyz="-0.0000000164 0.00000837 -0.00423158"
+        rpy="0 0 0" />
+      <mass
+        value="0.063354" />
+      <inertia
+        ixx="3.226842E-05"
+        ixy="4.773871E-14"
+        ixz="1.632922E-11"
+        iyy="2.330853E-05"
+        iyz="1.683393E-08"
+        izz="1.932875E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator_description/meshes/3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator_description/meshes/3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  
+  <joint
+    name="joint_3"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.0940004988482873"
+      rpy="0 -0.0602056446199069 0" />
+    <parent
+      link="link_2" />
+    <child
+      link="link_3" />
+    <axis
+      xyz="0 1 0" />
+  
+    <limit
+      lower="-2.617994"
+      upper="2.617994"
+      effort="1.8"
+      velocity="10.16" />
+  </joint>
+  
+  
+  
+  <link
+    name="link_4">
+    <inertial>
+      <origin
+        xyz="-0.00026539 0.00002496 -0.00544410"
+        rpy="0 0 0" />
+      <mass
+        value="0.064947" />
+      <inertia
+        ixx="3.585106E-05"
+        ixy="2.658622E-09"
+        ixz="-5.797620E-07"
+        iyy="2.708509E-05"
+        iyz="5.454000E-08"
+        izz="1.992243E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator_description/meshes/4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator_description/meshes/4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  
+  <joint
+    name="joint_4"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.0940004988482917"
+      rpy="0 -0.0896254408501377 0" />
+    <parent
+      link="link_3" />
+    <child
+      link="link_4" />
+    <axis
+      xyz="0 1 0" />
+  
+    <limit
+      lower="-2.617994"
+      upper="2.617994"
+      effort="1.8"
+      velocity="10.16" />
+  </joint>
+  
+  
+  <link
+    name="link_5">
+    <inertial>
+      <origin
+        xyz="-0.00412017393846792 0.019983014952681 0.000118252871469049"
+        rpy="0 0 0" />
+      <mass
+        value="0.0164080340237465" />
+      <inertia
+        ixx="4.87879636001207E-06"
+        ixy="-1.85509258291174E-09"
+        ixz="3.35451603835896E-09"
+        iyy="7.81747236699756E-06"
+        iyz="4.35613938073601E-10"
+        izz="3.06988858153027E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator_description/meshes/5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator_description/meshes/5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  
+  <joint
+    name="joint_5"
+    type="revolute">
+    <origin
+      xyz="-0.000249682938632756 0.000179211107190711 -0.0953824695796134"
+      rpy="-1.57079632679492 0 2.59269156911032" />
+    <parent
+      link="link_4" />
+    <child
+      link="link_5" />
+    <axis
+      xyz="0 1 0" />
+  
+    <limit
+      lower="-2.617994"
+      upper="2.617994"
+      effort="1.8"
+      velocity="10.16" />
+  </joint>
+  
+  
+
+  <ros2_control name="ManipulatorSystem" type="system">
+  
+  
+    <hardware>
+      <!-- Swap this plugin per target: mock hardware for bring-up testing,
+           gazebo_ros2_control/GazeboSystem for simulation,
+           a custom Dynamixel hardware interface plugin for real AX-18A hardware -->
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+    </hardware>
+    
+    
+    <joint name="joint_1">
+      <command_interface name="velocity">
+        <param name="min">-10.16</param>
+        <param name="max">10.16</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+    
+    
+    
+    <joint name="joint_2">
+      <command_interface name="velocity">
+        <param name="min">-10.16</param>
+        <param name="max">10.16</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+    
+    
+    <joint name="joint_3">
+      <command_interface name="velocity">
+        <param name="min">-10.16</param>
+        <param name="max">10.16</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+    
+    
+    <joint name="joint_4">
+      <command_interface name="velocity">
+        <param name="min">-10.16</param>
+        <param name="max">10.16</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+    
+    
+    <joint name="joint_5">
+      <command_interface name="velocity">
+        <param name="min">-10.16</param>
+        <param name="max">10.16</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+    
+    
+  </ros2_control>
+
+  <gazebo>
+    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+      <parameters>    /home/cj-007/manipulator_ws/install/manipulator_description/share/manipulator_description/config/ros2_controllers.yaml
+      </parameters>
+    </plugin>
+  </gazebo>
+</robot>

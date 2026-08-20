@@ -1,0 +1,29 @@
+{
+    "ROS2.distro": "humble",
+    "python.autoComplete.extraPaths": [
+        "/home/cj-007/auv_project/phase5_ros2/auv_ws/install/auv_package/lib/python3.10/site-packages",
+        "/home/cj-007/auv_project/phase5_ros2/auv_ws/install/auv_gazebo/lib/python3.10/site-packages",
+        "/home/cj-007/auv_project/install/auv_package/lib/python3.10/site-packages",
+        "/home/cj-007/auv_project/install/auv_gazebo/lib/python3.10/site-packages",
+        "/home/cj-007/cognipilot/cranium/install/corti/local/lib/python3.10/dist-packages",
+        "/home/cj-007/cognipilot/cranium/install/synapse_msgs/local/lib/python3.10/dist-packages",
+        "/home/cj-007/ros2_ws/install/turtlesim_catch_them_all/lib/python3.10/site-packages",
+        "/home/cj-007/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages",
+        "/home/cj-007/ros2_ws/install/my_py_pkg/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/cj-007/auv_project/phase5_ros2/auv_ws/install/auv_package/lib/python3.10/site-packages",
+        "/home/cj-007/auv_project/phase5_ros2/auv_ws/install/auv_gazebo/lib/python3.10/site-packages",
+        "/home/cj-007/auv_project/install/auv_package/lib/python3.10/site-packages",
+        "/home/cj-007/auv_project/install/auv_gazebo/lib/python3.10/site-packages",
+        "/home/cj-007/cognipilot/cranium/install/corti/local/lib/python3.10/dist-packages",
+        "/home/cj-007/cognipilot/cranium/install/synapse_msgs/local/lib/python3.10/dist-packages",
+        "/home/cj-007/ros2_ws/install/turtlesim_catch_them_all/lib/python3.10/site-packages",
+        "/home/cj-007/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages",
+        "/home/cj-007/ros2_ws/install/my_py_pkg/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

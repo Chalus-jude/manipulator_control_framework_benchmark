@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: manipulator_description
+    relative_path: urdf/Manipulator.urdf
+  srdf:
+    relative_path: config/manipulator.srdf
+  package_settings:
+    author_name: Chalus Jude J
+    author_email: jude.chalus2005@gmail.com
+    generated_timestamp: 1785994785
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity

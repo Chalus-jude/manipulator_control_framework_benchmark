@@ -1,0 +1,44 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    effort_controller:
+      type: forward_command_controller/ForwardCommandController
+
+joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+      - joint_4
+      - joint_5
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    state_publish_rate: 50.0
+    action_monitor_rate: 20.0
+
+# Direct effort (torque) command interface -- used by Framework A's own PID
+# control loop (controller_node.py), bypassing MoveIt's built-in trajectory
+# execution. Only one of joint_trajectory_controller / effort_controller can
+# be ACTIVE at a time (ros2_control resource claiming) -- switch between them
+# via `ros2 control switch_controllers` depending on whether you're doing
+# quick MoveIt visualization (position) or a real Framework A run (effort).
+effort_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+      - joint_4
+      - joint_5
+    interface_name: effort

@@ -1,0 +1,15 @@
+# Goal
+geometry_msgs/PoseStamped target_pose
+float32 timeout_seconds
+---
+# Result
+bool success
+float32 final_position_error       # meters
+float32 final_orientation_error    # radians
+float32 completion_time_seconds
+float32 trajectory_jerk_rms
+float32 inference_latency_ms
+---
+# Feedback
+float32 current_position_error
+float32 elapsed_time_seconds

@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/cj-007/cognipilot/cranium/install/synapse_tinyframe/include/**",
+        "/home/cj-007/cognipilot/cranium/install/synapse_protobuf/include/**",
+        "/home/cj-007/cognipilot/cranium/install/synapse_msgs/include/**",
+        "/home/cj-007/ros2_ws/install/my_robot_interfaces/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/cj-007/manipulator_ws/src/benchmark_core_msgs/include/**",
+        "/home/cj-007/manipulator_ws/src/manipulator_bringup/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ros2",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++17"
+    }
+  ],
+  "version": 4
+}
