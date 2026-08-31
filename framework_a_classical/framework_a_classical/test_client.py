@@ -1,20 +1,3 @@
-"""
-Test client for Framework A's ExecuteReach action server.
-
-Three modes:
-  single  -- send one target (position, optionally orientation)
-  batch   -- send N GUARANTEED-REACHABLE targets, generated via forward
-             kinematics from random valid joint configurations (same
-             methodology used to validate the IK solver itself), report
-             aggregate statistics
-  file    -- load targets from a JSON file (list of {x,y,z,qx,qy,qz,qw})
-
-Usage:
-  ros2 run framework_a_classical test_client -- --mode single
-  ros2 run framework_a_classical test_client -- --mode batch --n 20 --seed 1
-  ros2 run framework_a_classical test_client -- --mode file --input targets.json
-  ros2 run framework_a_classical test_client -- --mode batch --n 10 --output results.json
-"""
 
 import sys
 import json
@@ -34,7 +17,6 @@ from framework_a_classical.ik_solver import joint_limits_array
 
 
 def rotmat_to_quat(R):
-    """Robust (all-branch) rotation matrix -> quaternion, Shepperd's method."""
     tr = np.trace(R)
     if tr > 0:
         S = np.sqrt(tr + 1.0) * 2
@@ -64,13 +46,7 @@ def rotmat_to_quat(R):
 
 
 def generate_reachable_targets(n, seed=None):
-    """
-    Generate N guaranteed-reachable (position, quaternion) targets by sampling
-    random valid joint configurations and running them through forward
-    kinematics -- the SAME methodology used to validate the IK solver itself
-    (94.5% success rate, 200-trial test). Ensures the client is testing real
-    reachability failures, not artifacts of picking an impossible target.
-    """
+
     lower, upper = joint_limits_array()
     rng = np.random.default_rng(seed)
     targets = []
