@@ -1,31 +1,26 @@
-"""
-Forward kinematics and geometric Jacobian for the custom 5-DOF AX-18A manipulator.
 
-
-"""
 
 import numpy as np
 
-# --- Joint parameters, exactly as verified in manipulator.urdf ---
-# Each entry: (xyz translation, rpy fixed-axis rotation, local rotation axis)
+
 JOINTS = [
-    # joint_1: base_link -> link_1
+    # joint_1
     dict(xyz=[-0.180075738834269, -0.0399304, 7.57388346011159e-05],
          rpy=[1.5707963267949, -0.0157623178412577, 0.0],
          axis=[0, 0, 1]),
-    # joint_2: link_1 -> link_2
+    # joint_2
     dict(xyz=[0.0, 0.0, 0.0465],
          rpy=[3.14159265358979, 0.0105410811316586, 3.14159265358979],
          axis=[0, 1, 0]),
-    # joint_3: link_2 -> link_3
+    # joint_3
     dict(xyz=[0.0, 0.0, -0.0940004988482873],
          rpy=[0.0, -0.0602056446199069, 0.0],
          axis=[0, 1, 0]),
-    # joint_4: link_3 -> link_4
+    # joint_4
     dict(xyz=[0.0, 0.0, -0.0940004988482917],
          rpy=[0.0, -0.0896254408501377, 0.0],
          axis=[0, 1, 0]),
-    # joint_5: link_4 -> link_5
+    # joint_5
     dict(xyz=[-0.000249682938632756, 0.000179211107190711, -0.0953824695796134],
          rpy=[-1.57079632679492, 0.0, 2.59269156911032],
          axis=[0, 1, 0]),
@@ -35,7 +30,6 @@ N_JOINTS = len(JOINTS)
 
 
 def rpy_to_matrix(rpy):
-    """Fixed-axis (extrinsic) roll-pitch-yaw to 3x3 rotation matrix: R = Rz(y) @ Ry(p) @ Rx(r)."""
     r, p, y = rpy
     cr, sr = np.cos(r), np.sin(r)
     cp, sp = np.cos(p), np.sin(p)
@@ -48,7 +42,6 @@ def rpy_to_matrix(rpy):
 
 
 def axis_angle_to_matrix(axis, theta):
-    """Rotation matrix for a rotation of `theta` about a given local axis (Rodrigues' formula)."""
     axis = np.array(axis, dtype=float)
     axis = axis / np.linalg.norm(axis)
     K = np.array([
@@ -60,7 +53,6 @@ def axis_angle_to_matrix(axis, theta):
 
 
 def joint_transform(joint, theta):
-    """4x4 homogeneous transform for one joint: fixed origin, then rotation by theta about its axis."""
     R_origin = rpy_to_matrix(joint['rpy'])
     R_joint = axis_angle_to_matrix(joint['axis'], theta)
     R_total = R_origin @ R_joint
@@ -72,14 +64,7 @@ def joint_transform(joint, theta):
 
 
 def forward_kinematics(thetas):
-    """
-    Returns the end-effector (link_5 origin) pose as a 4x4 homogeneous transform
-    in the base_link frame, plus two lists of intermediate transforms:
-      - transforms[i]: pose of joint i's PARENT frame (before joint i's origin or rotation)
-      - pre_rotation[i]: pose after joint i's fixed origin (xyz+rpy) but BEFORE its
-        own variable rotation -- this is the correct frame for the joint's axis/position
-        used in the Jacobian.
-    """
+
     assert len(thetas) == N_JOINTS
 
     T = np.eye(4)
@@ -106,10 +91,7 @@ def forward_kinematics(thetas):
 
 
 def geometric_jacobian(thetas):
-    """
-    Standard geometric Jacobian (6xN) for a serial revolute chain, in the base_link frame.
-    Rows 0-2: linear velocity. Rows 3-5: angular velocity.
-    """
+
     T_end, transforms, pre_rotation = forward_kinematics(thetas)
     o_end = T_end[:3, 3]
 
@@ -143,10 +125,7 @@ LINK_COM_LOCAL = [
 
 
 def link_com_position(thetas, link_index):
-    """
-    World (base_link-frame) position of link `link_index`'s (0-based, 0=link_1)
-    center of mass, at joint configuration `thetas`.
-    """
+
     _, transforms, _ = forward_kinematics(thetas)
     T_link = transforms[link_index + 1]  # transforms[i+1] = pose of link_i's own frame
     com_local = np.append(np.array(LINK_COM_LOCAL[link_index]), 1.0)
@@ -155,7 +134,6 @@ def link_com_position(thetas, link_index):
 
 
 def potential_energy(thetas):
-    """Total gravitational potential energy (J) of all 5 moving links."""
     U = 0.0
     for i in range(N_JOINTS):
         com = link_com_position(thetas, i)
@@ -164,7 +142,6 @@ def potential_energy(thetas):
 
 
 def gravity_torque_numerical(thetas, eps=1e-6):
-    """Gravity torque via central finite-difference on potential energy: tau_j = dU/dtheta_j."""
     tau = np.zeros(N_JOINTS)
     for j in range(N_JOINTS):
         tp = np.array(thetas, dtype=float); tp[j] += eps
@@ -174,7 +151,6 @@ def gravity_torque_numerical(thetas, eps=1e-6):
 
 
 def _link_com_jacobian(thetas, link_index):
-    """3xN linear-velocity Jacobian for link `link_index`'s CoM (columns > link_index are zero)."""
     _, transforms, pre_rotation = forward_kinematics(thetas)
     com_world = link_com_position(thetas, link_index)
 
@@ -190,7 +166,6 @@ def _link_com_jacobian(thetas, link_index):
 
 
 def gravity_torque_analytical(thetas):
-    """Gravity torque via virtual work: tau = sum_i J_com_i^T @ (m_i * g_vec)."""
     g_vec = np.array([0.0, 0.0, -G])
     tau = np.zeros(N_JOINTS)
     for i in range(N_JOINTS):
@@ -201,8 +176,7 @@ def gravity_torque_analytical(thetas):
 
 
 def gravity_torque(thetas):
-    """Public entry point -- analytical method (fast). Validated utility, currently
-    unused by the velocity-based control pipeline (see module comment above)."""
+
     return gravity_torque_analytical(thetas)
 
 
